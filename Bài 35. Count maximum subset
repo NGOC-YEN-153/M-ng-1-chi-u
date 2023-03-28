@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+void solve(){
+    ll n,k;cin>>n>>k;
+    ll a[n];for(ll i=0;i<n; i++)cin>>a[i];
+    map<ll,ll>mp;sort(a,a+n);
+    ll l=0, ans=-1e18;
+    for(ll i=0;i<n;i++){
+        mp[a[i]]++;
+        if((*--mp.end()).first -(*mp.begin()).first<=k)ans=max(ans,i-l+1);
+        else {
+            while((*--mp.end()).first - (*mp.begin()).first>k){
+                mp[a[l]]--;
+                if(!mp[a[l]])mp.erase(a[l]);
+                ++l;
+            }
+            ans=max(ans,i-l+1);
+        }
+    }
+    cout<<ans;
+}
+int main(){
+    solve();
+}
