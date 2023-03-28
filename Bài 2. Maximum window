@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+#define ll long long
+using namespace std;
+ll n,k;
+void solve(){
+    ll a[n];for(ll i=0;i<n; i++)cin>>a[i];
+    deque<ll>dq1,dq2;
+    for(ll i=0;i<n;i++){
+        if(dq1.size()==0)dq1.push_front(i);
+        else if(a[i]>a[dq1.back()]){
+            while(a[dq1.front()]>=a[i])dq1.pop_front();
+            dq1.push_front(i);
+        }
+        else if(a[i]<=a[dq1.back()]){
+            while(dq1.size())dq1.pop_back();
+            dq1.push_back(i);
+        }
+         if(i>=k-1)cout<<a[dq1.back()]<<" ";
+        if( i>=k-1 && dq1.back()==i-k+1)dq1.pop_back();
+        
+        //////
+        if(dq2.size()==0)dq2.push_front(i);
+        else if(a[i]<a[dq2.back()]){
+            while(a[dq2.front()]<=a[i])dq2.pop_front();
+            dq2.push_front(i);
+        }
+        else if(a[i]>=a[dq2.back()]){
+            while(dq2.size())dq2.pop_back();
+            dq2.push_back(i);
+        }
+         if(i>=k-1)cout<<a[dq2.back()]<<"\n";
+        if( i>=k-1 && dq2.back()==i-k+1)dq2.pop_back();
+    }
+}
+int main(){
+    cin>>n>>k;
+    solve();
+}
