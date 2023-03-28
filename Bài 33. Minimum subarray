@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+int main(){
+    int n,k;cin>>n>>k;
+    map<ll,int>mp;
+    int a[n];
+    for(int i=0;i<n;i++)cin>>a[i];
+    ll sum=0,kiluc=1e17,ok=0;
+    for(int i=0;i<n;i++){
+        sum+=a[i];
+        if(sum==k){
+            if(i+1<kiluc){
+                kiluc=i+1;
+                ok=1;
+            }
+        }
+         auto it=mp.find(sum-k);
+        if(it!=mp.end()){
+            if( i-(*it).second<kiluc)kiluc=i-(*it).second;
+            ok=1;
+        }
+        mp[sum]=i;
+    }   
+    if(!ok)cout<<"-1";
+    else
+    cout<<kiluc;
+}
