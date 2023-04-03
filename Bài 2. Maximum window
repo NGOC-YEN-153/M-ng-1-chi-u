@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
+// xoa truoc them sau  neu khong se bi sai vdu n = 3 k = 3 a[] = {5 , 5 , 5};
 ll n,k;
 void solve(){
     ll a[n];for(ll i=0;i<n; i++)cin>>a[i];
